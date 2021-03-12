@@ -1,0 +1,31 @@
+{{>header}}
+<div class="container-formilario">
+	<h2>Incribirse</h2>
+	{{{inscribir documento nombre correo telefono nomCurso}}}
+	<form class="row gy-2 gx-3 align-items-center" name="inscribir" action="/inscribir" method="post">
+		<div class="mb-3 row g-3">
+			<div class="col-md-6">
+				<label class="form-label" for="documento">Documento*</label>
+				<input class="form-control" type="number" min="1" name="documento" id="documento" required="" placeholder="Ej: 12345...">
+			</div>
+			<div class="col-md-6">
+				<label class="form-label" for="nombre">Nombre*</label>
+				<input class="form-control" type="text" name="nombre" id="nombre" required=""
+					placeholder="Ej: Pepito">
+			</div>
+			<div class="col-md-6">
+				<label class="form-label" for="correo" id="correo">Correo*</label>
+				<input class="form-control" type="email" name="correo" required="" placeholder="Ej: Correo@correo.com">
+			</div>
+			<div class="col-md-6">
+				<label class="form-label" for="telefono" id="telefono">Telefono*</label>
+				<input class="form-control" type="number" name="telefono" id="telefono" placeholder="Ej: 7561325">
+			</div>
+			<div class="col-md-16">
+				<label class="form-label" lass="form-label" for="modalidad">Curso*</label>
+				{{{mostarLista}}}
+			</div>
+		</div>
+		<input class="btn btn-primary col-md-12" type="submit">
+	</form>
+{{>footer}}
