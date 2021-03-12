@@ -95,6 +95,6 @@ app.get('*', (req, res) => {
 	});
 });
 
-app.listen(3000, () => {
+app.listen(80, () => {
 	console.log('Escuchando al puerto 3000');
 });
