@@ -59,7 +59,7 @@ hbs.registerHelper('listarInscritos', () => {
 	try {
 		return funciones.listarIns()
 	} catch (err) {
-		return 'No hay cursos por mostar'
+		return 'No hay inscritos por mostar'
 	}
 })
 

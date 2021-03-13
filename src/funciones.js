@@ -16,7 +16,7 @@ const crear = (cursos) => {
 		guardar()
 		texto = `<div class='alert alert-success alert-dismissble
 			fade show' role='alert'>
-			El curso ${cursos.nombre} ha sido creado con exito
+			El curso ${cursos.nombre} ha sido creado con éxito
 			<button type="button"
 			class="btn-close" data-bs-dismiss="alert"
 			aria-label="Close"></button></div>`
@@ -91,7 +91,7 @@ const verCurso = (nCurso) =>{
 	if(encontar){
 		texto = `<div class='alert alert-success alert-dismissble
 			fade show' role='alert'>
-			No existe un curs ocon el id ${encontar.idcurso}
+			No existe un curso con el id ${encontar.idcurso}
 			<button type="button"
 			class="btn-close" data-bs-dismiss="alert"
 			aria-label="Close"></button></div>`
@@ -151,7 +151,7 @@ const inscribir = (inscritos) => {
 		guardarIns()
 		texto = `<div class='alert alert-success alert-dismissble
 			fade show' role='alert'>
-			${inscritos.nombre} te haa sido inscrito con exito
+			${inscritos.nombre} te has sido inscrito con éxito
 			<button type="button"
 			class="btn-close" data-bs-dismiss="alert"
 			aria-label="Close"></button></div>`
