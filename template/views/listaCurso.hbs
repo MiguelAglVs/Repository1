@@ -1,29 +1,29 @@
 {{>header}}
-<div class="container-sm">
-	<h2>{{titulo}}</h2>
-	<table class="table table-striped table-hover">
-		<thead class="thead-color">
-			<th>Id del curso</th>
-			<th>Nombre</th>
-			<th>Modalidad</th>
-			<th>Valor</th>
-			<th>Intencidad</th>
-			<th>Descripcion</th>
-			<th>Estado</th>
-		</thead>
-		<tbody>
-			{{{listar}}}
-		<tbody>
-	</table>
-	<div class="container-formilario">
-		<h2>Modificar</h2>
-		<form class="row gy-2 gx-3 align-items-center" name="Modificar" action="/actualizar" method="post">
-			<div class="col-md-16">
-				<label class="form-label" lass="form-label" for="nCurso">Curso*</label>
-				{{{mostarcur}}}
-			</div>
-			<input class="btn btn-primary col-md-12" type="submit">
-		</form>
+	<div class="container-sm">
+		<h2>{{titulo}}</h2>
+		<table class="table table-striped table-hover">
+			<thead class="thead-color">
+				<th>Id</th>
+				<th>Nombre</th>
+				<th>Modalidad</th>
+				<th>Valor</th>
+				<th>Intencidad</th>
+				<th>Descripcion</th>
+				<th>Estado</th>
+			</thead>
+			<tbody>
+				{{{listar}}}
+			<tbody>
+		</table>
+		<div class="container-sm">
+			<h2>Modificar</h2>
+			<form class="row gy-2 gx-3 align-items-center" name="Modificar" action="/actualizar" method="post">
+				<div class="col-md-16">
+					<label class="form-label" lass="form-label" for="nCurso">Curso*</label>
+					{{{mostarcur}}}
+				</div>
+				<input class="btn btn-primary col-md-12" type="submit">
+			</form>
+		</div>
 	</div>
-</div>
 {{>footer}}
