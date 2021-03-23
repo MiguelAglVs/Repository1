@@ -11,7 +11,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/app.js"
+    "start": "nodemon ./src/app.js"
   },
   "author": "Miguen Vargas miguelaglvs@gmail.com",
   "license": "ISC"
