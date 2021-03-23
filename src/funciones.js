@@ -192,7 +192,7 @@ const listarIns = () => {
 }
 
 const listarCursos = () => {
-	listadoCursos = require('./Cursos.json')
+	listadoCursos = require('./../Cursos.json')
 	let texto = '<select name="nomCurso" class="form-control"><option selected disabled>--SELECIONAR--</option>';
 	listadoCursos.forEach(cur => {
 		texto = `${texto} <option value='${cur.nombre}'>${cur.nombre}</option>`
