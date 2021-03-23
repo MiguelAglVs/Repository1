@@ -86,9 +86,10 @@ app.post('/inscribir', (req, res) => {
 
 app.get('/verInscritos', (req, res) => {
 	res.render('listainscritos', {
-		titulo: 'Lista de cursos'
+		titulo: 'Lista de inscritos'
 	})
 })
+
 app.get('*', (req, res) => {
 	res.render('error', {
 		titulo: 'Error'
