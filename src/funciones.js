@@ -27,7 +27,7 @@ const crear = (cursos) => {
 
 const cargar = () => {
 	try {
-		listadoCursos = require('./../Cursos.json')
+		listadoCursos = require('./Cursos.json')
 	} catch (err) {
 		listadoCursos = []
 	}
@@ -41,7 +41,7 @@ const guardar = () => {
 	})
 }
 const listar = () => {
-	listadoCursos = require('./../Cursos.json')
+	listadoCursos = require('./Cursos.json')
 	let texto = ''
 	listadoCursos.forEach(cur => {
 		texto = texto +
@@ -58,7 +58,7 @@ const listar = () => {
 	return texto;
 }
 const listar2 = () => {
-	listadoCursos = require('./../Cursos.json')
+	listadoCursos = require('./Cursos.json')
 	let texto = ''
 	listadoCursos.forEach(cur => {
 		texto = texto +
@@ -76,8 +76,8 @@ const listar2 = () => {
 }
 
 const listaCursos = () => {
-	listadoCursos = require('./../Cursos.json')
-	let texto = '<select name="nCurso" class="form-control"><option selected disabled>--SELECIONAR--</option>';
+	listadoCursos = require('./Cursos.json')
+	let texto = '<select name="idcurso" class="form-control"><option selected disabled>--SELECIONAR--</option>';
 	listadoCursos.forEach(cur => {
 		texto = `${texto} <option value='${cur.idcurso}'>${cur.idcurso} - ${cur.nombre}</option>`
 	})
@@ -85,25 +85,36 @@ const listaCursos = () => {
 	return texto
 }
 
-const verCurso = (nCurso) =>{
-	listadoCursos = require('./../Cursos.json')
-	let encontar = listadoCursos.find(buscar => buscar.id == nCurso)
-	if(encontar){
-		texto = `<div class='alert alert-success alert-dismissble
-			fade show' role='alert'>
-			No existe un curso con el id ${encontar.idcurso}
-			<button type="button"
-			class="btn-close" data-bs-dismiss="alert"
-			aria-label="Close"></button></div>`
+/* ======================================== */
+/* ================continuar=============== */
+/* ======================================== */
+
+const verCurso = (idcurso) => {
+	listadoCursos = require('./Cursos.json')
+	let encontrar = listadoCursos.find(buscar => buscar.id === idcurso)
+	texto = ""
+	if (encontrar) {
+
+			texto = texto +
+				'<tr>' +
+				'<td>' + encontrar.idcurso + '</td>' +
+				'<td>' + encontrar.nombre + '</td>' +
+				'<td>' + encontrar.modalidad + '</td>' +
+				'<td>' + encontrar.valor + '</td>' +
+				'<td>' + encontrar.intencidad + '</td>' +
+				'<td>' + encontrar.descripcion + '</td>' +
+				'<td>' + encontrar.estado + '</td></tr>'
+
+		texto = texto + '<tbody><table>';
+		return texto
 	}
-	return texto
 }
 
-const actualizar = (idcurso, nombre, modalidad, valor, intencidad, descripcion) => {
+const actualizar = (idcurso) => {
 	cargar()
 	let encontar = listadoCursos.find(buscar => buscar.idcurso == idcurso)
 	if (!encontar) {
-		console.log('no existeel curso')
+		console.log('no existe el curso')
 	} else
 		if (encontar.estado == 'dispnible') {
 			encontar.estado = 'Cerrado'
@@ -161,7 +172,7 @@ const inscribir = (inscritos) => {
 
 const cargarIns = () => {
 	try {
-		listaInscritos = require('./../Inscritos.json')
+		listaInscritos = require('./Inscritos.json')
 	} catch (err) {
 		listaInscritos = []
 	}
@@ -176,7 +187,7 @@ const guardarIns = () => {
 }
 
 const listarIns = () => {
-	listadoCursos = require('./../Inscritos.json')
+	listadoCursos = require('./Inscritos.json')
 	let texto = ''
 	listadoCursos.forEach(insc => {
 		texto = texto +
@@ -192,7 +203,7 @@ const listarIns = () => {
 }
 
 const listarCursos = () => {
-	listadoCursos = require('./../Cursos.json')
+	listadoCursos = require('./Cursos.json')
 	let texto = '<select name="nomCurso" class="form-control"><option selected disabled>--SELECIONAR--</option>';
 	listadoCursos.forEach(cur => {
 		texto = `${texto} <option value='${cur.nombre}'>${cur.nombre}</option>`

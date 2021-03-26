@@ -38,9 +38,9 @@ hbs.registerHelper('mostarcur', () => {
 	}
 })
 
-hbs.registerHelper('verCurso', (nCurso) => {
-	return funciones.verCurso(nCurso)
-})//creat cursos
+hbs.registerHelper('buscar', (idcurso) => {
+	return funciones.verCurso(idcurso)
+})//crear cursos
 
 hbs.registerHelper('inscribir', (documento, nombre, correo, telefono, nomCurso) => {
 	if (documento) {

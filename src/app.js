@@ -53,17 +53,17 @@ app.get('/verCursos', (req, res) => {
 	})
 })
 
-app.post('/verCursos', (req, res) => {
-	res.render('listaCurso', {
-		titulo: 'Lista de cursos',
-		estado: req.body.estado
-	})
-})
-
 app.post('/actualizar', (req, res) => {
 	res.render('actualizar', {
 		titulo: 'Modificar',
-		nCurso: req.body.nCurso
+		idcurso: req.body.nCurso,
+	})
+})
+
+app.post('/verCurso', (req, res) => {
+	res.render('listaCurso', {
+		titulo: 'Lista de cursos',
+		estado: req.body.estado
 	})
 })
 
@@ -99,5 +99,5 @@ app.get('*', (req, res) => {
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
-	console.log('servidoren elpuerto ' + port);
+	console.log('servidor iniciado en el puerto ' + port);
 });
