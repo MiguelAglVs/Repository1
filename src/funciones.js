@@ -85,26 +85,20 @@ const listaCursos = () => {
 	return texto
 }
 
-/* ======================================== */
-/* ================continuar=============== */
-/* ======================================== */
-
 const verCurso = (idcurso) => {
 	listadoCursos = require('./../Cursos.json')
 	let encontrar = listadoCursos.find(buscar => buscar.id === idcurso)
 	texto = ""
 	if (encontrar) {
-
-			texto = texto +
-				'<tr>' +
-				'<td>' + encontrar.idcurso + '</td>' +
-				'<td>' + encontrar.nombre + '</td>' +
-				'<td>' + encontrar.modalidad + '</td>' +
-				'<td>' + encontrar.valor + '</td>' +
-				'<td>' + encontrar.intencidad + '</td>' +
-				'<td>' + encontrar.descripcion + '</td>' +
-				'<td>' + encontrar.estado + '</td></tr>'
-
+		texto = texto +
+			'<tr>' +
+			'<td>' + encontrar.idcurso + '</td>' +
+			'<td>' + encontrar.nombre + '</td>' +
+			'<td>' + encontrar.modalidad + '</td>' +
+			'<td>' + encontrar.valor + '</td>' +
+			'<td>' + encontrar.intencidad + '</td>' +
+			'<td>' + encontrar.descripcion + '</td>' +
+			'<td>' + encontrar.estado + '</td></tr>'
 		texto = texto + '<tbody><table>';
 		return texto
 	}
