@@ -110,7 +110,7 @@ const verCurso = (idcurso) => {
 	}
 }
 
-const actualizar = (idcurso) => {
+const actualizar = (estado, idcurso) => {
 	cargar()
 	let encontar = listadoCursos.find(buscar => buscar.idcurso == idcurso)
 	if (!encontar) {
