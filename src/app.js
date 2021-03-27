@@ -53,19 +53,18 @@ app.get('/verCursos', (req, res) => {
 	})
 })
 
-app.post('/actualizar', (req, res) => {
+app.post('/verCurso', (req, res) => {
 	res.render('actualizar', {
-		titulo: 'Modificar',
+		titulo: 'Lista de cursos',
 		idcurso: req.body.nCurso,
 	})
 })
 
-app.post('/verCurso', (req, res) => {
-	res.render('listaCurso', {
-		titulo: 'Lista de cursos',
-		estado: req.body.estado
-	})
+app.post('/actualizar', (req, res) => {
+	funciones.actualizar(req.body.nCurso, req.body.estado)
+	res.redirect('verCursos')
 })
+
 
 app.get('/inscribir', (req, res) => {
 	res.render('inscribir', {
@@ -85,7 +84,7 @@ app.post('/inscribir', (req, res) => {
 });
 
 app.get('/inscritos', (req, res) => {
-	res.render('listaInscritos', {
+	res.render('listainscritos', {
 		titulo: 'Lista de inscritos'
 	})
 })

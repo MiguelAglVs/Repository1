@@ -87,7 +87,7 @@ const listaCursos = () => {
 
 const verCurso = (idcurso) => {
 	listadoCursos = require('./../Cursos.json')
-	let encontrar = listadoCursos.find(buscar => buscar.id === idcurso)
+	let encontrar = listadoCursos.find(buscar => buscar.id == idcurso)
 	texto = ""
 	if (encontrar) {
 		texto = texto +
@@ -104,16 +104,15 @@ const verCurso = (idcurso) => {
 	}
 }
 
-const actualizar = (estado, idcurso) => {
-	cargar()
-	let encontar = listadoCursos.find(buscar => buscar.idcurso == idcurso)
-	if (!encontar) {
-		console.log('no existe el curso')
-	} else
-		if (encontar.estado == 'dispnible') {
-			encontar.estado = 'Cerrado'
-			guardar()
-		}
+const actualizar = (idcurso, sta) => {
+	listadoCursos = require('./../Cursos.json')
+	let encontrar = listadoCursos.find(buscar => buscar.id == idcurso)
+	if (!encontrar) {
+		console.log('no existe el curso' + idcurso)
+	} else {
+		encontrar.estado = sta
+		guardar()
+	}
 }
 
 const eliminar = (dell) => {

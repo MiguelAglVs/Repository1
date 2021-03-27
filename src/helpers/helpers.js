@@ -23,6 +23,7 @@ hbs.registerHelper('listar', () => {
 		return 'No hay cursos por mostar'
 	}
 })
+
 hbs.registerHelper('listar2', () => {
 	try {
 		return funciones.listar2()
@@ -30,6 +31,7 @@ hbs.registerHelper('listar2', () => {
 		return 'No hay cursos por mostar'
 	}
 })
+
 hbs.registerHelper('mostarcur', () => {
 	try {
 		return funciones.listaCursos()
