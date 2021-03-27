@@ -104,6 +104,7 @@ const verCurso = (idcurso) => {
 	}
 }
 
+
 const actualizar = (idcurso, sta) => {
 	listadoCursos = require('./../Cursos.json')
 	let encontrar = listadoCursos.find(buscar => buscar.id == idcurso)

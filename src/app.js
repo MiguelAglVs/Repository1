@@ -84,7 +84,7 @@ app.post('/inscribir', (req, res) => {
 });
 
 app.get('/inscritos', (req, res) => {
-	res.render('listainscritos', {
+	res.render('listaInscritos', {
 		titulo: 'Lista de inscritos'
 	})
 })
