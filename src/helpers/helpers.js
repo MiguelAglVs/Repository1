@@ -36,7 +36,7 @@ hbs.registerHelper('mostarcur', () => {
 	try {
 		return funciones.listaCursos()
 	} catch (err) {
-		return 'No hay cursos disponibles'
+		return '<select name="idcurso" class="form-control"><option selected disabled>No hay cursos disponibles</option></select>'
 	}
 })
 
@@ -65,10 +65,10 @@ hbs.registerHelper('listarInscritos', () => {
 	}
 })
 
-hbs.registerHelper('mostarLista', () => {
+hbs.registerHelper('mostarLista', (estado) => {
 	try {
-		return funciones.listarCursos()
+		return funciones.listarCursos(estado)
 	} catch (err) {
-		return 'No hay cursos disponibles'
+		return '<select name="nomCurso" class="form-control"><option selected disabled>No hay cursos disponibles</option></select>'
 	}
 })
