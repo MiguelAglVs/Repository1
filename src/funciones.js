@@ -52,7 +52,7 @@ const listar = () => {
 			'<td>' + cur.valor + '</td>' +
 			'<td>' + cur.intencidad + '</td>' +
 			'<td>' + cur.descripcion + '</td>' +
-			'<td>' + cur.estado + '</td></tr>'
+			'<td class="sta">' + cur.estado + '</td></tr>'
 	});
 	texto = texto + '<tbody><table>';
 	return texto;
@@ -91,7 +91,7 @@ const listar2 = () => {
 											<td> ${cur.valor}</td>
 											<td> ${cur.intencidad}</td>
 											<td> ${cur.descripcion}</td>
-											<td> ${cur.estado}</td>
+											<td class="sta"> ${cur.estado}</td>
 										</tr>
 									</tbody>
 								</table>
@@ -105,7 +105,7 @@ const listar2 = () => {
 }
 const listaCursos = () => {
 	listadoCursos = require('./../Cursos.json')
-	let texto = '<select name="idcurso" class="form-control" required><option selected disabled>--SELECIONAR--</option>';
+	let texto = '<select name="idcurso" class="form-control" required><option selected hidden>--SELECIONAR--</option>';
 	listadoCursos.forEach(cur => {
 		texto = `${texto} <option value='${cur.idcurso}'>${cur.idcurso} - ${cur.nombre}</option>`
 	})
@@ -117,7 +117,7 @@ const verCurso = (idcurso) => {
 	listadoCursos = require('./../Cursos.json')
 	let encontrar = listadoCursos.find(buscar => buscar.id == idcurso)
 	texto = ""
-	if (encontrar) {
+	if (encontrar.id == idcurso) {
 		texto = texto +
 			'<tr>' +
 			'<td>' + encontrar.idcurso + '</td>' +
@@ -126,7 +126,7 @@ const verCurso = (idcurso) => {
 			'<td>' + encontrar.valor + '</td>' +
 			'<td>' + encontrar.intencidad + '</td>' +
 			'<td>' + encontrar.descripcion + '</td>' +
-			'<td>' + encontrar.estado + '</td></tr>'
+			'<td class="sta">' + encontrar.estado + '</td></tr>'
 		texto = texto + '<tbody><table>';
 		return texto
 	}

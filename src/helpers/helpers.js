@@ -10,7 +10,7 @@ hbs.registerHelper('crearCurso', (idcurso, nombre, modalidad, valor, intencidad,
 			valor: valor,
 			intencidad: intencidad,
 			descripcion: descripcion,
-			estado: 'disponible'
+			estado: "<i class='fas fa-unlock'></i>"
 		}
 		return funciones.crear(cur)
 	}
@@ -27,13 +27,6 @@ hbs.registerHelper('listar', () => {
 hbs.registerHelper('listar2', () => {
 	try {
 		return funciones.listar2()
-	} catch (err) {
-		return 'No hay cursos por mostar'
-	}
-})
-hbs.registerHelper('listado2', () => {
-	try {
-		return funciones.listado2()
 	} catch (err) {
 		return 'No hay cursos por mostar'
 	}
