@@ -1,17 +1,19 @@
 {{>header}}
 <div class="container">
 	<h2>Lista de cursos</h2>
-	<table class="table table-striped table-hover">
-		<thead class="thead-color">
-			<th>Documento</th>
-			<th>Nombre</th>
-			<th>Correo</th>
-			<th>Teléfono</th>
-			<th>Curso</th>
-		</thead>
-		<tbody>
-			{{{listarInscritos}}}
-		</tbody>
-	</table>
+	<div class="table-responsive">
+		<table class="table table-striped table-hover">
+			<thead class="thead-color">
+				<th>Documento</th>
+				<th>Nombre</th>
+				<th>Correo</th>
+				<th>Teléfono</th>
+				<th>Curso</th>
+			</thead>
+			<tbody>
+				{{{listarInscritos}}}
+			</tbody>
+		</table>
+	</div>
 </div>
 {{>footer}}

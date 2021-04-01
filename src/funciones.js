@@ -71,30 +71,32 @@ const listar2 = () => {
 								</button>
 							</h5>
 						</div>
-						<div id="collapse${i}" class="collapse" aria-labelledby="heading${i}" data-parent="#accordion">
+						<div id="collapse${i}" class="collapse show" aria-labelledby="heading${i}" data-parent="#accordion">
 							<div class="card-body">
-								<table class="table table-striped table-hover">
-									<thead class="thead-color">
-										<th>Id</th>
-										<th>Nombre</th>
-										<th>Modalidad</th>
-										<th>Valor</th>
-										<th>Intencidad</th>
-										<th>Descripción</th>
-										<th>Estado</th>
-									</thead>
-									<tbody>
-										<tr>
-											<td>${cur.idcurso}</td>
-											<td> ${cur.nombre}</td>
-											<td> ${cur.modalidad}</td>
-											<td> ${cur.valor}</td>
-											<td> ${cur.intencidad}</td>
-											<td> ${cur.descripcion}</td>
-											<td class="sta"> ${cur.estado}</td>
-										</tr>
-									</tbody>
-								</table>
+								<div class="table-responsive">
+									<table class="table table-striped table-hover">
+										<thead class="thead-color">
+											<th>Id</th>
+											<th>Nombre</th>
+											<th>Modalidad</th>
+											<th>Valor</th>
+											<th>Intencidad</th>
+											<th>Descripción</th>
+											<th>Estado</th>
+										</thead>
+										<tbody>
+											<tr>
+												<td>${cur.idcurso}</td>
+												<td> ${cur.nombre}</td>
+												<td> ${cur.modalidad}</td>
+												<td> ${cur.valor}</td>
+												<td> ${cur.intencidad}</td>
+												<td> ${cur.descripcion}</td>
+												<td class="sta"> ${cur.estado}</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
 							</div>
 						</div>
 					</div>`
