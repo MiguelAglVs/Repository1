@@ -59,25 +59,53 @@ const listar = () => {
 }
 const listar2 = () => {
 	listadoCursos = require('./../Cursos.json')
-	let texto = ''
+	let texto = "<div class='accordion'>";
+	i = 1;
 	listadoCursos.forEach(cur => {
 		texto = texto +
-			'<tr>' +
-			'<td>' + cur.idcurso + '</td>' +
-			'<td>' + cur.nombre + '</td>' +
-			'<td>' + cur.modalidad + '</td>' +
-			'<td>' + cur.valor + '</td>' +
-			'<td>' + cur.intencidad + '</td>' +
-			'<td>' + cur.descripcion + '</td>' +
-			'<td>' + cur.estado + '</td></tr>'
-	});
-	texto = texto + '<tbody><table>';
+			`<div class="card">
+						<div class="card-header" id="heading${i}">
+							<h5 class="mb-0">
+								<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse${i}" aria-expanded="false" aria-controls="collapse${i}">
+									${cur.nombre}
+								</button>
+							</h5>
+						</div>
+						<div id="collapse${i}" class="collapse" aria-labelledby="heading${i}" data-parent="#accordion">
+							<div class="card-body">
+								<table class="table table-striped table-hover">
+									<thead class="thead-color">
+										<th>Id</th>
+										<th>Nombre</th>
+										<th>Modalidad</th>
+										<th>Valor</th>
+										<th>Intencidad</th>
+										<th>Descripción</th>
+										<th>Estado</th>
+									</thead>
+									<tbody>
+										<tr>
+											<td>${cur.idcurso}</td>
+											<td> ${cur.nombre}</td>
+											<td> ${cur.modalidad}</td>
+											<td> ${cur.valor}</td>
+											<td> ${cur.intencidad}</td>
+											<td> ${cur.descripcion}</td>
+											<td> ${cur.estado}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>`
+		i++;
+	})
+	texto = texto + '</div>';
 	return texto;
 }
-
 const listaCursos = () => {
 	listadoCursos = require('./../Cursos.json')
-	let texto = '<select name="idcurso" class="form-control"><option selected disabled>--SELECIONAR--</option>';
+	let texto = '<select name="idcurso" class="form-control" required><option selected disabled>--SELECIONAR--</option>';
 	listadoCursos.forEach(cur => {
 		texto = `${texto} <option value='${cur.idcurso}'>${cur.idcurso} - ${cur.nombre}</option>`
 	})
@@ -196,13 +224,13 @@ const listarIns = () => {
 	return texto;
 }
 
-const listarCursos = (estado) => {
+const listarCursos = (idcurso) => {
 	listadoCursos = require('./../Cursos.json')
-	let encontrar = listadoCursos.find(buscar => buscar.sta == estado)
+	let encontrar = listadoCursos.find(buscar => buscar.id == idcurso)
 	let texto = '<select name="nomCurso" class="form-control"><option selected disabled>--SELECIONAR--</option>';
-	if (encontrar != 'cerrado') {
-		listadoCursos.forEach(cur => {
-			texto = `${texto} <option value='${cur.idcurso}'>${cur.nombre}</option>`
+	if (encontrar == 'disponible') {
+		listadoCursos.forEach(encontrar => {
+			texto = `${texto} <option value='${encontrar.idcurso}'>${encontrar.nombre}</option>`
 		})
 		texto = texto + '</select>'
 		return texto

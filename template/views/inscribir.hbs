@@ -1,5 +1,5 @@
 {{>header}}
-<div class="container-sm">
+<div class="container">
 	<h2>Incribirse</h2>
 	{{{inscribir documento nombre correo telefono nomCurso}}}
 	<form class="row gy-2 gx-3 align-items-center" name="inscribir" action="/inscribir" method="post">
@@ -23,9 +23,9 @@
 			</div>
 			<div class="col-md-16">
 				<label class="form-label" lass="form-label" for="modalidad">Curso*</label>
-				{{{mostarLista}}}
+				{{{mostarLista idcurso}}}
 			</div>
-			<input class="btn btn-primary col-md-12" type="submit">
 		</div>
+		<input class="btn btn-primary col-md-12" type="submit">
 	</form>
 	{{>footer}}
