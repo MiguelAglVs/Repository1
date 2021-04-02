@@ -89,6 +89,13 @@ app.get('/inscritos', (req, res) => {
 	})
 })
 
+app.post('/eliminar', (req, res) => {
+	res.render('eliminar', {
+		titulo: 'Eliminar inscritos',
+		documento: parseInt(req.body.documento)
+	})
+})
+
 app.get('*', (req, res) => {
 	res.render('error', {
 		titulo: 'Error'

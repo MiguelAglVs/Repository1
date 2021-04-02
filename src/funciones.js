@@ -8,18 +8,14 @@ const crear = (cursos) => {
 		texto = `<div class='alert alert-warning alert-dismissble
 			fade show' role='alert'>
 			Ya existe un curso de ${cursos.nombre} con el id ${cursos.idcurso}
-			<button type="button"
-			class="btn-close" data-bs-dismiss="alert"
-			aria-label="Close"></button></div>`
+			</div>`
 	} else {
 		listadoCursos.push(cursos)
 		guardar()
 		texto = `<div class='alert alert-success alert-dismissble
 			fade show' role='alert'>
 			El curso ${cursos.nombre} ha sido creado con éxito
-			<button type="button"
-			class="btn-close" data-bs-dismiss="alert"
-			aria-label="Close"></button></div>`
+			</div>`
 	}
 	return texto
 }
@@ -71,7 +67,7 @@ const listar2 = () => {
 								</button>
 							</h5>
 						</div>
-						<div id="collapse${i}" class="collapse show" aria-labelledby="heading${i}" data-parent="#accordion">
+						<div id="collapse${i}" class="collapse" aria-labelledby="heading${i}" data-parent="#accordion">
 							<div class="card-body">
 								<div class="table-responsive">
 									<table class="table table-striped table-hover">
@@ -144,31 +140,7 @@ const actualizar = (idcurso, sta) => {
 		encontrar.estado = sta
 		guardar()
 	}
-}
-
-const eliminar = (dell) => {
-	cargar()
-	let nuevo = listaClientes.filter(dell => dell.idcurso != idcurso)
-	if (nuevo.length == listadoCursos.length) {
-		texto = `<div class='alert alert-danger alert-dismissble
-			fade show' role='alert'>
-			No existe un curs ocon el id ${dell.idcurso}
-			<button type="button"
-			class="btn-close" data-bs-dismiss="alert"
-			aria-label="Close"></button></div>`
-	}
-	else {
-		listadoCursos = nuevo
-		guardar()
-		texto = `<div class='alert alert-success alert-dismissble
-			fade show' role='alert'>
-			${dell.idcurso} se ha eliminado
-			<button type="button"
-			class="btn-close" data-bs-dismiss="alert"
-			aria-label="Close"></button></div>`
-	}
-	return eliminar
-} //cursos
+}//cursos
 
 listaInscritos = [];
 const inscribir = (inscritos) => {
@@ -178,18 +150,14 @@ const inscribir = (inscritos) => {
 		texto = `<div class='alert alert-warning alert-dismissble
 			fade show' role='alert'>
 			${inscritos.nombre} ya estas inscrito/a
-			<button type="button"
-			class="btn-close" data-bs-dismiss="alert"
-			aria-label="Close"></button></div>`
+			</div>`
 	} else {
 		listaInscritos.push(inscritos)
 		guardarIns()
 		texto = `<div class='alert alert-success alert-dismissble
 			fade show' role='alert'>
 			${inscritos.nombre} te has sido inscrito con éxito
-			<button type="button"
-			class="btn-close" data-bs-dismiss="alert"
-			aria-label="Close"></button></div>`
+			</div>`
 	}
 	return texto
 }
@@ -215,12 +183,13 @@ const listarIns = () => {
 	let texto = ''
 	listadoCursos.forEach(insc => {
 		texto = texto +
-			'<tr>' +
-			'<td>' + insc.documento + '</td>' +
-			'<td>' + insc.nombre + '</td>' +
-			'<td>' + insc.correo + '</td>' +
-			'<td>' + insc.telefono + '</td>' +
-			'<td>' + insc.nomCurso + '</td></tr>'
+			`<tr>
+			<td>${insc.documento}</td>
+			<td>${insc.nombre}</td>
+			<td>${insc.correo}</td>
+			<td>${insc.telefono}</td>
+			<td>${insc.nomCurso}</td>
+			<td><button type="submit" class="form-control btn btn-danger btn-sm" name="documento" value="${insc.documento}"><i class='fas fa-trash'></i></button></td></tr>`
 	});
 	texto = texto + '<tbody><table>';
 	return texto;
@@ -230,13 +199,35 @@ const listarCursos = (idcurso) => {
 	listadoCursos = require('./../Cursos.json')
 	let encontrar = listadoCursos.find(buscar => buscar.id == idcurso)
 	let texto = '<select name="nomCurso" class="form-control"><option selected disabled>--SELECIONAR--</option>';
-	if (encontrar == 'disponible') {
+	if (encontrar != 'disponible') {
 		listadoCursos.forEach(encontrar => {
-			texto = `${texto} <option value='${encontrar.idcurso}'>${encontrar.nombre}</option>`
+			texto = `${texto} <option value='${encontrar.nombre}'>${encontrar.nombre}</option>`
 		})
 		texto = texto + '</select>'
 		return texto
 	}
+}
+
+const eliminar = (documento) => {
+	cargarIns()
+	let nuevo = listaInscritos.filter(doc => doc.documento != documento)
+	console.log(nuevo.length)
+	console.log(listaInscritos.length)
+	console.log(documento)
+	console.log(nuevo)
+	if (nuevo.length == listaInscritos.length) {
+		texto = `<div class='alert alert-danger alert-dismissble
+			fade show' role='alert'>
+			No se encontro el documento ${documento}</div>`
+	}
+	else {
+		listaInscritos = nuevo
+		guardarIns()
+		texto = `<div class='alert alert-success alert-dismissble
+			fade show' role='alert'>
+			ha eliminado el documento ${documento} </div>`
+	}
+	return texto
 }
 
 module.exports = {

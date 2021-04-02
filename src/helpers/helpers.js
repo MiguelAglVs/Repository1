@@ -10,7 +10,7 @@ hbs.registerHelper('crearCurso', (idcurso, nombre, modalidad, valor, intencidad,
 			valor: valor,
 			intencidad: intencidad,
 			descripcion: descripcion,
-			estado: "<i class='fas fa-unlock'></i>"
+			estado: "Disponible"
 		}
 		return funciones.crear(cur)
 	}
@@ -71,4 +71,8 @@ hbs.registerHelper('mostarLista', (idcurso) => {
 	} catch (err) {
 		return '<select name="nomCurso" class="form-control"><option selected disabled>No hay cursos disponibles</option></select>'
 	}
+})
+
+hbs.registerHelper('eliminar', (documento) => {
+	return funciones.eliminar(parseInt(documento))
 })
