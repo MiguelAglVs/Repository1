@@ -115,29 +115,36 @@ const verCurso = (idcurso) => {
 	listadoCursos = require('./../Cursos.json')
 	let encontrar = listadoCursos.find(buscar => buscar.id == idcurso)
 	texto = ""
-	if (encontrar.id == idcurso) {
-		texto = texto +
-			'<tr>' +
-			'<td>' + encontrar.idcurso + '</td>' +
-			'<td>' + encontrar.nombre + '</td>' +
-			'<td>' + encontrar.modalidad + '</td>' +
-			'<td>' + encontrar.valor + '</td>' +
-			'<td>' + encontrar.intencidad + '</td>' +
-			'<td>' + encontrar.descripcion + '</td>' +
-			'<td class="sta">' + encontrar.estado + '</td></tr>'
+	if (encontrar) {
+		listadoCursos.forEach(encontrar => {
+			texto = texto +
+				`<tr>
+			<td>${encontrar.idcurso}</td>
+			<td>${encontrar.nombre}</td>
+			<td>${encontrar.modalidad}</td>
+			<td>${encontrar.valor}</td>
+			<td>${encontrar.intencidad}</td>
+			<td>${encontrar.descripcion}</td>
+			<td>${encontrar.estado}</td>
+			<td><button type="submit" class="form-control btn btn-primary btn-sm" name="idcurso" value="${encontrar.idcurso}"><i class="fas fa-pen"></i></button></td></tr>`
+		});
 		texto = texto + '<tbody><table>';
 		return texto
 	}
 }
 
-
-const actualizar = (idcurso, sta) => {
-	listadoCursos = require('./../Cursos.json')
+const actualizar = (idcurso) => {
+	cargar()
 	let encontrar = listadoCursos.find(buscar => buscar.id == idcurso)
+	// console.log(encontrar.idcurso)
 	if (!encontrar) {
-		console.log('no existe el curso' + idcurso)
+		console.log('no existe el curso ' + idcurso)
 	} else {
-		encontrar.estado = sta
+		if (encontrar.estado == 'Disponible') {
+			encontrar.estado = 'Cerrado'
+		} else if (encontrar.estado == 'Cerrado') {
+			encontrar.estado = 'Disponible'
+		}
 		guardar()
 	}
 }//cursos
@@ -188,8 +195,7 @@ const listarIns = () => {
 			<td>${insc.nombre}</td>
 			<td>${insc.correo}</td>
 			<td>${insc.telefono}</td>
-			<td>${insc.nomCurso}</td>
-			<td><button type="submit" class="form-control btn btn-danger btn-sm" name="documento" value="${insc.documento}"><i class='fas fa-trash'></i></button></td></tr>`
+			<td>${insc.nomCurso}</td>`
 	});
 	texto = texto + '<tbody><table>';
 	return texto;
@@ -208,17 +214,29 @@ const listarCursos = (idcurso) => {
 	}
 }
 
+const verIns = () => {
+	listadoCursos = require('./../Inscritos.json')
+	let texto = ''
+	listadoCursos.forEach(insc => {
+		texto = texto +
+			`<tr>
+			<td>${insc.documento}</td>
+			<td>${insc.nombre}</td>
+			<td>${insc.correo}</td>
+			<td>${insc.telefono}</td>
+			<td>${insc.nomCurso}</td>
+			<td><button type="submit" class="form-control btn btn-danger btn-sm" name="documento" value="${insc.documento}"><i class='fas fa-trash'></i></button></td></tr>`
+	});
+	texto = texto + '<tbody><table>';
+	return texto;
+}
+
 const eliminar = (documento) => {
 	cargarIns()
 	let nuevo = listaInscritos.filter(doc => doc.documento != documento)
-	console.log(nuevo.length)
-	console.log(listaInscritos.length)
-	console.log(documento)
-	console.log(nuevo)
+	let texto = ''
 	if (nuevo.length == listaInscritos.length) {
-		texto = `<div class='alert alert-danger alert-dismissble
-			fade show' role='alert'>
-			No se encontro el documento ${documento}</div>`
+		console.log(`No se encontro el documento ${documento}`)
 	}
 	else {
 		listaInscritos = nuevo
@@ -236,9 +254,11 @@ module.exports = {
 	verCurso,
 	listar2,
 	listaCursos,
+	actualizar,
+
 	inscribir,
 	listarIns,
+	verIns,
 	listarCursos,
-	actualizar,
 	eliminar
 }

@@ -61,7 +61,7 @@ app.post('/verCurso', (req, res) => {
 })
 
 app.post('/actualizar', (req, res) => {
-	funciones.actualizar(req.body.nCurso, req.body.estado)
+	funciones.actualizar(parseInt(req.body.idcurso))
 	res.redirect('verCursos')
 })
 
@@ -89,12 +89,19 @@ app.get('/inscritos', (req, res) => {
 	})
 })
 
+app.post('/inscritos', (req, res) => {
+	res.render('eliminar', {
+		titulo: 'Lista de inscritos'
+	})
+})
+
 app.post('/eliminar', (req, res) => {
 	res.render('eliminar', {
 		titulo: 'Eliminar inscritos',
 		documento: parseInt(req.body.documento)
 	})
 })
+
 
 app.get('*', (req, res) => {
 	res.render('error', {

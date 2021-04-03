@@ -1,34 +1,24 @@
 {{>header}}
-<div class="container">
-	<h2>{{titulo}}</h2>
-	<div class="table-responsive">
-		<table class="table table-striped table-hover">
-			<thead class="thead-color">
-				<th>Id</th>
-				<th>Nombre</th>
-				<th>Modalidad</th>
-				<th>Valor</th>
-				<th>Intencidad</th>
-				<th>Descripción</th>
-				<th>Estado</th>
-			</thead>
-			<tbody>
-				{{{buscar idcurso}}}
-			<tbody>
-		</table>
-	</div>
+<form class="row gy-2 gx-3 align-items-center" name="actualizar" action="/actualizar" method="post">
 	<div class="container">
-		<form class="row gy-2 gx-3 align-items-center" name="actualizar" action="/actualizar" method="post">
-			<div class="col-md-12">
-				<label class="form-label" class="form-label" for="estado">Estado*</label>
-				<select class="form-control" id="estado" name="estado">
-					<option value="Disponible" selected hidden>--SELECIONAR--</option>
-					<option value="Disponible">Disponible</option>
-					<option value="Cerrado">Cerrado</option>
-				</select>
-			</div>
-			<input class="btn btn-primary col-md-12" type="submit">
-		</form>
+		<h2>{{titulo}}</h2>
+		<div class="table-responsive">
+			<table class="table table-striped table-hover">
+				<thead class="thead-color">
+					<th>Id</th>
+					<th>Nombre</th>
+					<th>Modalidad</th>
+					<th>Valor</th>
+					<th>Intencidad</th>
+					<th>Descripción</th>
+					<th>Estado</th>
+					<th>Editar</th>
+				</thead>
+				<tbody>
+					{{{verCurso idcurso}}}
+				<tbody>
+			</table>
+		</div>
 	</div>
-</div>
+</form>
 {{>footer}}

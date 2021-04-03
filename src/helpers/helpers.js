@@ -40,7 +40,7 @@ hbs.registerHelper('mostarcur', () => {
 	}
 })
 
-hbs.registerHelper('buscar', (idcurso) => {
+hbs.registerHelper('verCurso', (idcurso) => {
 	return funciones.verCurso(idcurso)
 })//crear cursos
 
@@ -71,6 +71,10 @@ hbs.registerHelper('mostarLista', (idcurso) => {
 	} catch (err) {
 		return '<select name="nomCurso" class="form-control"><option selected disabled>No hay cursos disponibles</option></select>'
 	}
+})
+
+hbs.registerHelper('verIns', (documento) => {
+	return funciones.verIns(documento)
 })
 
 hbs.registerHelper('eliminar', (documento) => {
