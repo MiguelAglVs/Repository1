@@ -55,47 +55,47 @@ const listar = () => {
 }
 const listar2 = () => {
 	listadoCursos = require('./../Cursos.json')
-	let texto = "<div class='accordion'>";
+	let texto = "<div class='accordion' id='accordionExample'>";
 	i = 1;
 	listadoCursos.forEach(cur => {
 		texto = texto +
-			`<div class="card">
-						<div class="card-header" id="heading${i}">
-							<h5 class="mb-0">
-								<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse${i}" aria-expanded="false" aria-controls="collapse${i}">
-									${cur.nombre}
-								</button>
-							</h5>
+			`<div class="accordion-item">
+				<h2 class="accordion-header" id="heading${i}">
+					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${i}"
+						aria-expanded="true" aria-controls="collapse${i}">
+						${cur.nombre}
+					</button>
+				</h2>
+				<div id="collapse${i}" class="accordion-collapse collapse" aria-labelledby="heading${i}"
+					data-bs-parent="#accordionExample">
+					<div class="accordion-body">
+						<div class="table-responsive">
+							<table class="table table-striped table-hover">
+								<thead class="thead-color">
+									<th>Id</th>
+									<th>Nombre</th>
+									<th>Modalidad</th>
+									<th>Valor</th>
+									<th>Intencidad</th>
+									<th>Descripción</th>
+									<th>Estado</th>
+								</thead>
+								<tbody>
+									<tr>
+										<td>${cur.idcurso}</td>
+										<td> ${cur.nombre}</td>
+										<td> ${cur.modalidad}</td>
+										<td> ${cur.valor}</td>
+										<td> ${cur.intencidad}</td>
+										<td> ${cur.descripcion}</td>
+										<td> ${cur.estado}</td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
-						<div id="collapse${i}" class="collapse" aria-labelledby="heading${i}" data-parent="#accordion">
-							<div class="card-body">
-								<div class="table-responsive">
-									<table class="table table-striped table-hover">
-										<thead class="thead-color">
-											<th>Id</th>
-											<th>Nombre</th>
-											<th>Modalidad</th>
-											<th>Valor</th>
-											<th>Intencidad</th>
-											<th>Descripción</th>
-											<th>Estado</th>
-										</thead>
-										<tbody>
-											<tr>
-												<td>${cur.idcurso}</td>
-												<td> ${cur.nombre}</td>
-												<td> ${cur.modalidad}</td>
-												<td> ${cur.valor}</td>
-												<td> ${cur.intencidad}</td>
-												<td> ${cur.descripcion}</td>
-												<td class="sta"> ${cur.estado}</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>`
+					</div>
+				</div>
+			</div>`
 		i++;
 	})
 	texto = texto + '</div>';
@@ -126,7 +126,7 @@ const verCurso = (idcurso) => {
 			<td>${encontrar.intencidad}</td>
 			<td>${encontrar.descripcion}</td>
 			<td>${encontrar.estado}</td>
-			<td><button type="submit" class="form-control btn btn-primary btn-sm" name="idcurso" value="${encontrar.idcurso}"><i class="fas fa-pen"></i></button></td></tr>`
+			<td><button type="submit" class="form-control btn btn-success btn-sm" name="idcurso" value="${encontrar.idcurso}"><i class="fas fa-pen"></i></button></td></tr>`
 		});
 		texto = texto + '<tbody><table>';
 		return texto
@@ -135,7 +135,7 @@ const verCurso = (idcurso) => {
 
 const actualizar = (idcurso) => {
 	cargar()
-	let encontrar = listadoCursos.find(buscar => buscar.id == idcurso)
+	let encontrar = listadoCursos.find(buscar => buscar.idcurso == idcurso)
 	// console.log(encontrar.idcurso)
 	if (!encontrar) {
 		console.log('no existe el curso ' + idcurso)
@@ -201,18 +201,17 @@ const listarIns = () => {
 	return texto;
 }
 
-const listarCursos = (idcurso) => {
+const listarCursos = () => {
 	listadoCursos = require('./../Cursos.json')
-	let encontrar = listadoCursos.find(buscar => buscar.id == idcurso)
+	let listaDisponibles = listadoCursos.filter(buscar => buscar.estado == 'Disponible')
+
 	let texto = '<select name="nomCurso" class="form-control"><option selected disabled>--SELECIONAR--</option>';
-	if (encontrar != 'disponible') {
-		listadoCursos.forEach(encontrar => {
+	listaDisponibles.forEach(encontrar => {
 			texto = `${texto} <option value='${encontrar.nombre}'>${encontrar.nombre}</option>`
 		})
 		texto = texto + '</select>'
 		return texto
 	}
-}
 
 const verIns = () => {
 	listadoCursos = require('./../Inscritos.json')
