@@ -10,6 +10,10 @@ const crear = (cursos) => {
 			Ya existe un curso de ${cursos.nombre} con el id ${cursos.idcurso}
 			</div>`
 	} else {
+		if(cursos.intencidad == '' && cursos.modalidad == null){
+			cursos.intencidad = '-'
+			cursos.modalidad = '-'
+		}
 		listadoCursos.push(cursos)
 		guardar()
 		texto = `<div class='alert alert-success alert-dismissble
@@ -55,9 +59,10 @@ const listar = () => {
 }
 const listar2 = () => {
 	listadoCursos = require('./../Cursos.json')
+	let Disponibles = listadoCursos.filter(buscar => buscar.estado == 'Disponible')
 	let texto = "<div class='accordion' id='accordionExample'>";
 	i = 1;
-	listadoCursos.forEach(cur => {
+	Disponibles.forEach(cur => {
 		texto = texto +
 			`<div class="accordion-item">
 				<h2 class="accordion-header" id="heading${i}">
@@ -159,6 +164,9 @@ const inscribir = (inscritos) => {
 			${inscritos.nombre} ya estas inscrito/a
 			</div>`
 	} else {
+		if(inscritos.nomCurso == null){
+			inscritos.nomCurso = '-'
+		}
 		listaInscritos.push(inscritos)
 		guardarIns()
 		texto = `<div class='alert alert-success alert-dismissble
@@ -204,7 +212,6 @@ const listarIns = () => {
 const listarCursos = () => {
 	listadoCursos = require('./../Cursos.json')
 	let listaDisponibles = listadoCursos.filter(buscar => buscar.estado == 'Disponible')
-
 	let texto = '<select name="nomCurso" class="form-control"><option selected disabled>--SELECIONAR--</option>';
 	listaDisponibles.forEach(encontrar => {
 			texto = `${texto} <option value='${encontrar.nombre}'>${encontrar.nombre}</option>`
